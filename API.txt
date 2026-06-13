@@ -1,0 +1,247 @@
+This looks like a solid, practical exam task! Building a RESTful API is a core Laravel skill, and getting this down will definitely help you secure full marks.
+
+Since you are new to Laravel, we will break this down step-by-step using Artisan commands wherever possible to avoid mistakes.
+
+Here is your simple, step-by-step guide to nailing this task.
+
+Step 1: Project Setup & Database
+First, open your terminal, navigate to your working directory, and create a new project.
+
+Bash
+laravel new ecommerce-api --api
+(Note: Adding the --api flag automatically configures API routing and creates the api.php route file for you in newer Laravel versions).
+
+1. Configure the Database
+Open your project folder and look for the .env file in the root directory. Update the database connection details to match your local setup (e.g., MySQL via XAMPP/Laragon):
+
+مقتطف الرمز
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ecommerce_solutions
+DB_USERNAME=root
+DB_PASSWORD=
+(Make sure you create an empty database named ecommerce_solutions in phpMyAdmin before moving to the next step).
+
+Step 2: The Product System (Model, Migration, Factory, & Seeder)
+Laravel has an amazing shortcut command that generates almost everything you need for a model at once. Run this in your terminal:
+
+Bash
+php artisan make:model Product -mfs
+This single command creates:
+
+The Model (app/Models/Product.php)
+
+The Migration file (database/migrations/..._create_products_table.php)
+
+The Factory (database/factories/ProductFactory.php)
+
+The Seeder (database/seeders/ProductSeeder.php)
+
+1. Update the Migration File
+Open your newly created migration file in database/migrations/ and define the required fields inside the up() method:
+
+PHP
+public function up(): void
+{
+    Schema::create('products', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->text('description')->nullable();
+        $table->decimal('price', 8, 2); // 8 total digits, 2 after decimal
+        $table->string('category');
+        $table->integer('stock')->default(0);
+        $table->timestamps();
+    });
+}
+2. Update the Product Model
+Open app/Models/Product.php and make the fields mass-assignable so Laravel allows data inserts:
+
+PHP
+protected $fillable = [
+    'name', 
+    'description', 
+    'price', 
+    'category', 
+    'stock'
+];
+3. Setup the Factory (For dummy data)
+Open database/factories/ProductFactory.php and define how a single fake product looks:
+
+PHP
+public function definition(): array
+{
+    return [
+        'name' => $this->faker->word(),
+        'description' => $this->faker->sentence(),
+        'price' => $this->faker->randomFloat(2, 10, 500), // Prices between 10 and 500
+        'category' => $this->faker->randomElement(['Electronics', 'Clothing', 'Books', 'Home']),
+        'stock' => $this->faker->numberBetween(0, 100),
+    ];
+}
+4. Setup the Seeder & Run Migrations
+Open database/seeders/ProductSeeder.php and tell it to create some products:
+
+PHP
+public function run(): void
+{
+    \App\Models\Product::factory(20)->create(); // Creates 20 dummy products
+}
+Now, go to database/seeders/DatabaseSeeder.php and uncomment or add this line to the run() method so it actually triggers your ProductSeeder:
+
+PHP
+$this->call(ProductSeeder::class);
+Finally, migrate your database and seed it with the dummy data by running:
+
+Bash
+php artisan migrate --seed
+Step 3: Controller & API Endpoints (CRUD)
+To handle the business logic cleanly, let's generate an API-specific controller:
+
+Bash
+php artisan make:controller Api/ProductController --api
+(The --api flag excludes unnecessary methods like create and edit which are only used for HTML forms).
+
+Open app/Http/Controllers/Api/ProductController.php and implement the complete CRUD logic:
+
+PHP
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use Illuminate\Http\Request;
+
+class ProductController extends Controller
+{
+    // 1. GET /api/products (List all products)
+    public function index()
+    {
+        return response()->json(Product::all(), 200);
+    }
+
+    // 2. POST /api/products (Create a product with validation)
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max|255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'category' => 'required|string',
+            'stock' => 'required|integer|min:0',
+        ]);
+
+        $product = Product::create($validated);
+
+        return response()->json([
+            'message' => 'Product created successfully',
+            'data' => $product
+        ], 21); // 21 status means "Created"
+    }
+
+    // 3. GET /api/products/{id} (View single product details)
+    public function show(Product $product)
+    {
+        return response()->json($product, 200);
+    }
+
+    // 4. PUT/PATCH /api/products/{id} (Update a product)
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'sometimes|required|numeric|min:0',
+            'category' => 'sometimes|required|string',
+            'stock' => 'sometimes|required|integer|min:0',
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            'message' => 'Product updated successfully',
+            'data' => $product
+        ], 200);
+    }
+
+    // 5. DELETE /api/products/{id} (Delete a product)
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product deleted successfully'
+        ], 200);
+    }
+}
+Define the Routes
+Open your API routes file. Depending on your version of Laravel, this is located at routes/api.php.
+
+Add the following single line of code to handle all 5 endpoints cleanly:
+
+PHP
+use App\Http\Controllers\Api\ProductController;
+use Illuminate\Support\Facades\Route;
+
+Route::apiResource('products', ProductController::class);
+Step 4: Thorough Postman Testing
+To test this, make sure your Laravel local server is running by executing:
+
+Bash
+php artisan serve
+By default, this hosts your project at http://127.0.0.1:8000.
+
+Open Postman and create a new collection to test your endpoints one by one. Remember to set the Headers key Accept to application/json for all requests.
+
+1. GET List
+Method: GET
+
+URL: http://127.0.0.1:8000/api/products
+
+Expected Result: A JSON array containing the 20 products generated by your seeder.
+
+2. POST Create
+Method: POST
+
+URL: http://127.0.0.1:8000/api/products
+
+Body: Choose raw and select JSON. Paste this payload:
+
+JSON
+{
+    "name": "Wireless Mouse",
+    "description": "Ergonomic 2.4GHz wireless mouse.",
+    "price": 29.99,
+    "category": "Electronics",
+    "stock": 50
+}
+Expected Result: Status 201 Created along with the JSON object showing your new product's ID (e.g., ID 21).
+
+3. GET Single Details
+Method: GET
+
+URL: http://127.0.0.1:8000/api/products/21
+
+Expected Result: Status 200 OK showing only the details of the specific product you just created.
+
+4. PUT Update
+Method: PUT
+
+URL: http://127.0.0.1:8000/api/products/21
+
+Body: Choose raw -> JSON.
+
+JSON
+{
+    "name": "Wireless Mouse v2",
+    "price": 34.99,
+    "category": "Electronics",
+    "stock": 45
+}
+Expected Result: Status 200 OK and a response showing the updated fields.
+
+5. DELETE Deletion
+Method: DELETE
+
+URL: http://127.0.0.1:8000/api/products/21
+
+Expected Result: Status 200 OK with the text "Product deleted successfully". If you try to send a GET request to /api/products/21 right after, Laravel will automatically return a 404 Not Found response.
