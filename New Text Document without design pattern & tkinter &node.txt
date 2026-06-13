@@ -1,0 +1,1172 @@
+//php multi-dimensional array
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Report Portal</title>
+<!—add Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+<h2 class="text-center mb-4">Student Report Portal</h2>
+<?php
+// 1. Data Setup (Multi-dimensional Array)
+$students = [
+["name" => "Ahmed Ali", "grade" => "Grade 10", "subject" =>
+"Math", "marks" => 85],
+["name" => "Sara Mohamed", "grade" => "Grade 10", "subject" =>
+"Science", "marks" => 90],
+["name" => "Omar Hassan", "grade" => "Grade 11", "subject" =>
+"English", "marks" => 78],
+["name" => "Mona Khaled", "grade" => "Grade 11", "subject" =>
+"Physics", "marks" => 88],
+["name" => "Youssef Ibrahim", "grade" => "Grade 12", "subject" =>
+"Chemistry", "marks" => 92]
+];
+?>
+<!-- 3. Table Design -->
+<table class="table table-bordered table-striped text-center">
+<thead class="table-dark">
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Grade</th>
+<th>Subject</th>
+<th>Marks</th>
+</tr>
+</thead>
+<tbody>
+<?php
+// 2. Loop through data
+$index = 1;
+foreach ($students as $student) {
+echo "<tr>";
+echo "<td>" . $index++ . "</td>";
+echo "<td>" . $student['name'] . "</td>";
+echo "<td>" . $student['grade'] . "</td>";
+echo "<td>" . $student['subject'] . "</td>";
+echo "<td>" . $student['marks'] . "</td>";
+echo "</tr>";
+}
+?>
+</tbody>
+</table>
+</div>
+</body>
+</html>
+-------------------------------------------------------------------------------
+
+//php include 
+
+head.php
+<!DOCTYPE html>
+<html>
+<head>
+<title>La Bella Trattoria</title>
+<meta charset="UTF-8">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+navbar.php
+<nav class="navbar navbar-dark bg-dark">
+<div class="container">
+<a href="home.php" class="navbar-brand">La Bella Trattoria</a>
+<div>
+<a href="index.php" class="text-white me-3">Home</a>
+<a href="menu.php" class="text-white me-3">Menu</a>
+<a href="location.php" class="text-white">Location</a>
+</div>
+</div>
+</nav>
+
+footer.php
+<footer class="bg-dark text-white text-center mt-5 p-3">
+<p>Address: Cairo, Egypt</p>
+<p>&copy; <?php echo date("Y"); ?></p>
+</footer>
+</body>
+</html>
+
+index.php
+<?php include('includes/head.php'); ?>
+<?php include('includes/navbar.php'); ?>
+<div class="container mt-4">
+<h1>Welcome to La Bella Trattoria</h1>
+<p>Enjoy our delicious Italian food.</p>
+<h3>Featured Dishes</h3>
+<ul>
+<li>Pizza</li>
+<li>Pasta</li>
+<li>Tiramisu</li>
+</ul>
+</div>
+<?php include('includes/footer.php'); ?>
+
+menu.php
+<?php include('includes/head.php'); ?>
+<?php include('includes/navbar.php'); ?>
+<div class="container mt-4">
+<h2>Menu</h2>
+<ul class="list-group">
+<li class="list-group-item">Pizza - 80 EGP</li>
+<li class="list-group-item">Pasta - 90 EGP</li>
+<li class="list-group-item">Tiramisu - 50 EGP</li>
+</ul>
+</div>
+<?php include('includes/footer.php'); ?>
+
+location.php
+<?php include('includes/head.php'); ?>
+<?php include('includes/navbar.php'); ?>
+<div class="container mt-4">
+<h2>Location</h2>
+<p>Address: Cairo, Egypt</p>
+<p>Phone: 01000000000</p>
+<h4>Opening Hours</h4>
+<p>Everyday: 10 AM - 11 PM</p>
+</div>
+<?php include('includes/footer.php'); ?>
+------------------------------------------------------------------------------------------
+//php Calculator
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-
+scale=1.0">
+<title>Calculator Exercise</title>
+<!-- Bootstrap 5 CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+<div class="row justify-content-center">
+<div class="col-md-6">
+<div class="card shadow">
+<div class="card-header bg-primary text-white">
+<h3 class="card-title mb-0">Calculator
+Exercise</h3>
+</div>
+<div class="card-body">
+<form action="calc.php" method="post">
+<div class="mb-3">
+<label for="num1" class="form-label">Number
+1</label>
+<input type="number" class="form-control"
+id="num1" name="num1" placeholder="First Number" required>
+</div>
+<div class="mb-3">
+<label for="num2" class="form-label">Number 2</label>
+<input type="number" class="form-control"
+id="num2" name="num2" placeholder="Second Number"
+required>
+</div>
+<div class="mb-3">
+<label class="form-label">Operation</label>
+<div class="d-flex flex-wrap gap-3">
+<div class="form-check">
+<input class="form-check-input" type="radio"
+name="operation" id="add" value="add" checked>
+<label class="form-check-label" for="add">Add</label>
+</div>
+<div class="form-check">
+<input class="form-check-input"
+type="radio" name="operation" id="subtract" value="subtract">
+<label class="form-check-label"
+for="subtract">Subtract</label>
+</div>
+<div class="form-check">
+<input class="form-check-input"
+type="radio" name="operation" id="multiply" value="multiply">
+<label class="form-check-label"
+for="multiply">Multiply</label>
+</div>
+<div class="form-check">
+<input class="form-check-input"
+type="radio" name="operation" id="divide" value="divide">
+<label class="form-check-label"
+for="divide">Divide</label>
+</div>
+</div>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-
+end">
+<button type="reset" class="btn btn-outline-
+secondary me-md-2">Reset</button>
+<button type="submit" class="btn btn-
+primary">Calculate</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bootstrap 5 JS Bundle with Popper -->
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+In calc.php
+<?php
+$num1 = $_POST['num1'];
+$num2 = $_POST['num2'];
+$operation = $_POST['operation'];
+if (is_numeric($num1) && is_numeric($num2)) {
+switch ($operation) {
+case 'add':
+$result = $num1 + $num2;
+break;
+case 'subtract':
+$result = $num1 - $num2;
+break;
+case 'multiply':
+$result = $num1 * $num2;
+break;
+case 'divide':
+if ($num2 != 0) {
+$result = $num1 / $num2;
+} else {
+$result = "Error: Division by zero";
+}
+break;
+default:
+$result = "Invalid operation";
+break;
+}
+} else {
+$result = "Error: Please enter valid numbers";
+}
+echo "Result: " . $result;
+?>
+-------------------------------------------------------------------------------------
+//php Dropdown cookies
+
+<?php
+// Store user language preference
+if(isset($_POST['language'])) {
+$language = $_POST['language'];
+setcookie("user_language", $language, time() + (86400 * 365), "/");
+echo "Language preference saved: " . $language;
+echo "<br><br>";
+}
+// Read language preference
+$default_language = "english";
+$current_language = isset($_COOKIE['user_language']) ?
+$_COOKIE['user_language'] : $default_language;
+echo "Current language: " . $current_language;
+echo "<br><br>";
+?>
+<form method="post">
+<select name="language">
+<option value="arabic">Arabic (العربية)</option>
+<option value="english">English</option>
+<option value="french">French (Français)</option>
+</select>
+<button type="submit">Save Preference</button>
+</form>
+----------------------------------------------------------------------------------
+
+//php pdo inventory management table
+
+//Database Setup:
+
+CREATE DATABASE retailpro_inventory;
+USE retailpro_inventory;
+CREATE TABLE products (
+product_id INT AUTO_INCREMENT PRIMARY KEY,
+product_name VARCHAR(100),
+category VARCHAR(100),
+price DECIMAL(10,2),
+stock_quantity INT,
+supplier VARCHAR(100)
+)
+//db.php
+<?php
+$host = "localhost";
+$dbname = "retailpro_inventory";
+$user = "root";
+$pass = "";
+try {
+$conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+$conn->setAttribute(PDO::ATTR_ERRMODE,
+PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+38
+echo "Connection failed";
+}
+?>
+//index.php
+<?php include 'db.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>RetailPro Inventory</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+<h2>Product Inventory</h2>
+<a href="add.php" class="btn btn-primary mb-3">Add Product</a>
+<!-- Category Filter -->
+<form method="GET" class="mb-3">
+<input type="text" name="category" class="form-control"
+placeholder="Filter by category">
+</form>
+<table class="table table-bordered">
+<tr>
+<th>Name</th>
+<th>Category</th>
+<th>Price</th>
+<th>Stock</th>
+<th>Supplier</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+<?php
+$category = $_GET['category'] ?? '';
+if ($category) {
+$stmt = $conn->prepare("SELECT * FROM products WHERE
+category LIKE ?");
+$stmt->execute(["%$category%"]);
+} else {
+$stmt = $conn->query("SELECT * FROM products");
+}
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+$status = ($row['stock_quantity'] < 5)
+? "<span class='text-danger'>Low Stock</span>"
+: "<span class='text-success'>In Stock</span>";
+echo "<tr>
+<td>{$row['product_name']}</td>
+<td>{$row['category']}</td>
+<td>{$row['price']}</td>
+<td>{$row['stock_quantity']}</td>
+<td>{$row['supplier']}</td>
+<td>$status</td>
+<td>
+<a href='delete.php?id={$row['product_id']}'
+onclick=\"return confirm('Delete this product?')\"
+class='btn btn-danger btn-sm'>Delete</a>
+</td>
+</tr>";
+}
+?>
+</table>
+</div>
+</body>
+</html>
+
+//Add.php
+<?php
+include 'db.php';
+if (isset($_POST['submit'])) {
+$name = $_POST['product_name'];
+$category = $_POST['category'];
+$price = $_POST['price'];
+$stock = $_POST['stock_quantity'];
+$supplier = $_POST['supplier'];
+$sql = "INSERT INTO products (product_name, category, price,
+stock_quantity, supplier)
+VALUES (?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$name, $category, $price, $stock, $supplier]);
+header("Location: index.php");
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Product</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+<h2>Add Product</h2>
+<form method="POST">
+<input type="text" name="product_name" class="form-control mb-2"
+placeholder="Product Name" required>
+<input type="text" name="category" class="form-control mb-2"
+placeholder="Category" required>
+<input type="number" step="0.01" name="price" class="form-control
+mb-2" placeholder="Price" required>
+<input type="number" name="stock_quantity" class="form-control
+mb-2" placeholder="Stock Quantity" required>
+<input type="text" name="supplier" class="form-control mb-2"
+placeholder="Supplier" required>
+<button type="submit" name="submit" class="btn btn-
+success">Add</button>
+<a href="index.php" class="btn btn-secondary">Back</a>
+</form>
+</div>
+</body>
+</html>
+
+//delete.php
+
+<?php
+include 'db.php';
+if (isset($_GET['id'])) {
+$stmt = $conn->prepare("DELETE FROM products WHERE product_id
+= ?");
+$stmt->execute([$_GET['id']]);
+}
+header("Location: index.php");
+?>
+----------------------------------------------------------------------------------
+//php cookies visitor 
+
+<?php
+$visit_count = 1;
+// Check if the visit_count cookie exists
+if(isset($_COOKIE['visit_count'])) {
+$visit_count = $_COOKIE['visit_count'] + 1;
+}
+// Set the cookie with the updated visit count
+// Expires in 30 days (86400 seconds = 1 day)
+setcookie("visit_count", $visit_count, time() + (86400 * 30), "/");
+// Display the visit count
+echo "Your number of visits to the site: " . $visit_count;
+?>
+-----------------------------------------------------------------------------------
+//Laravel MVC
+command : composer create-project laravel/laravel my-project
+//env.file
+DB_CONNECTION=mysql 
+DB_HOST=127.0.0.1 
+DB_PORT=3306 
+DB_DATABASE=cinephile_db 
+DB_USERNAME=root 
+DB_PASSWORD= 
+command of Migration : php artisan make:model Movie -mcrfs 
+//Migration 
+public function up(){ 
+Schema::create('movies', function (Blueprint $table) { 
+$table->id(); 
+$table->string('title'); 
+$table->string('director'); 
+$table->integer('release_year'); 
+$table->decimal('rating', 2, 1); 
+$table->timestamps(); 
+}); 
+} 
+---> php artisan migrate 
+//factories 
+use Illuminate\Database\Eloquent\Factories\Factory; 
+public function definition(){ 
+return [ 
+'title' => $this->faker->sentence(3), 
+'director' => $this->faker->name(), 
+'release_year' => $this->faker->year(), 
+'rating' => $this->faker->randomFloat(1, 5, 9),  
+]; 
+} 
+//seeders
+use App\Models\Movie; 
+public function run(): void{ 
+Movie::factory()->count(10)->create();  
+} 
+--->php artisan db:seed 
+//controller
+--index(all) :
+public function index(){ 
+$movies = Movie::latest()->get(); 
+return view('movies.index', compact('movies')); 
+} 
+--show(Single) :
+public function show(Movie $movie){ 
+return view('movies.show', compact('movie')); 
+} 
+//Routes
+use App\Http\Controllers\MovieController; 
+Route::get('/', [MovieController::class, 'index'])
+>name('movies.index'); 
+Route::get('/movies/{movie}', [MovieController::class, 'show'])
+>name('movies.show'); 
+----//create folders css,js
+//create layout file /view 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<title>Cinephile Hub</title> 
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> 
+</head> 
+<body> 
+<nav class="navbar navbar-dark bg-dark"> 
+<div class="container"> 
+<a class="navbar-brand" href="{{ route('movies.index') }}"> 
+Cinephile Hub 
+</a> 
+</div> 
+</nav> 
+<div class="container mt-4"> 
+@yield('content') 
+</div> 
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script> 
+</body> 
+</html> 
+----//create movies file / index.blade.php
+@extends('layouts.app') 
+@section('content') 
+<h2 class="mb-4">Movie Collection</h2> 
+<div class="row"> 
+@forelse($movies as $movie) 
+<div class="col-md-4 mb-4"> 
+<div class="card shadow-sm h-100"> 
+<div class="card-body"> 
+<h5>{{ $movie->title }}</h5> 
+<p>Director: {{ $movie->director }}</p> 
+<p>Year: {{ $movie->release_year }}</p> 
+<p>  
+{{ $movie->rating }}</p> 
+<a href="{{ route('movies.show', $movie->id) }}" 
+class="btn btn-primary"> 
+View Details 
+</a> 
+</div> 
+</div> 
+</div> 
+@empty 
+<p>No movies available.</p> 
+@endforelse 
+</div> 
+@endsection 
+----//create file show.blade.php in movies
+@extends('layouts.app') 
+@section('content') 
+<h2 class="mb-4">Movie Collection</h2> 
+<div class="row"> 
+@forelse($movies as $movie) 
+<div class="col-md-4 mb-4"> 
+<div class="card shadow-sm h-100"> 
+<div class="card-body"> 
+<h5>{{ $movie->title }}</h5> 
+<p>Director: {{ $movie->director }}</p> 
+<p>Year: {{ $movie->release_year }}</p> 
+<p>  
+{{ $movie->rating }}</p> 
+<a href="{{ route('movies.show', $movie->id) }}" 
+class="btn btn-primary"> 
+View Details 
+</a> 
+</div> 
+</div> 
+</div> 
+@empty 
+<p>No movies available.</p> 
+@endforelse 
+</div> 
+@endsection 
+-----------------------------------------------------------------------------------
+Laravel2 Api
+command : composer create-project laravel/laravel my-project
+//.env
+DB_DATABASE=ecommerce_db 
+DB_USERNAME=root 
+DB_PASSWORD= 
+---> php artisan make:model Product -mfs 
+//migration : 
+public function up(){ 
+Schema::create('products', function (Blueprint $table) { 
+$table->id(); 
+$table->string('name'); 
+$table->text('description'); 
+$table->decimal('price', 8, 2); 
+$table->string('category'); 
+$table->integer('stock'); 
+$table->timestamps(); 
+}); 
+} 
+---> php artisan migrate 
+// Models
+protected $fillable = ['name','description','price','category','stock']; 
+//factories 
+public function definition(){ 
+return [ 
+'name' => $this->faker->word(), 
+'description' => $this->faker->sentence(), 
+'price' => $this->faker->randomFloat(2, 10, 1000), 
+'category' => $this->faker->randomElement(['Electronics', 
+'Clothing', 'Books']), 
+'stock' => $this->faker->numberBetween(0, 100), 
+]; 
+} 
+//seeder
+use App\Models\Product; 
+public function run(): void{ 
+Product::factory()->count(20)->create(); 
+} 
+---> php artisan db:seed 
+---> php artisan install:api 
+---> php artisan make:controller Api/ProductController --api 
+//route/api
+use App\Http\Controllers\Api\ProductController; 
+Route::apiResource('products', ProductController::class); 
+//controller 
+///productcontroller :
+use App\Http\Controllers\Controller; 
+use Illuminate\Http\Request; 
+use App\Models\Product; 
+class ProductController extends Controller{ 
+// Get all products (index)
+public function index(){ 
+return Product::all(); 
+} 
+//store :
+public function store(Request $request){ 
+$product = Product::create($request->all()); 
+return $product; 
+} 
+///show :
+public function show($id){ 
+return Product::find($id); 
+} 
+// Update product 
+public function update(Request $request, $id){ 
+$product = Product::find($id); 
+$product->update($request->all()); 
+return $product; 
+} 
+// Delete product 
+public function destroy($id){ 
+$product = Product::find($id); 
+$product->delete(); 
+return "Product deleted"; 
+}
+---> php artisan serve 
+----------------------------------------------------------------------------------------
+React (Increment) :
+---> npm i bootstrap 
+import React, { useState } from "react"; 
+import "bootstrap/dist/css/bootstrap.min.css"; 
+function App() { 
+// 1. State 
+const [counter, setCounter] = useState(0); 
+// 2. Functions 
+const increment = () => { 
+setCounter(counter + 1); 
+}; 
+const decrement = () => { 
+setCounter(counter - 1); 
+}; 
+const reset = () => { 
+setCounter(0); 
+}; 
+67 
+return ( 
+<div className="container text-center mt-5"> 
+<h2 className="mb-4">WebTech Solutions Counter</h2> 
+{/* Counter Display */} 
+<div className="display-1 fw-bold mb-4"> 
+{counter} 
+</div> 
+{/* Buttons */} 
+<div className="d-flex justify-content-center gap-3"> 
+<button className="btn btn-success" onClick={increment}> 
+Increment 
+</button> 
+<button className="btn btn-danger" onClick={decrement}> 
+Decrement 
+</button> 
+<button className="btn btn-secondary" onClick={reset}> 
+Reset 
+</button> 
+</div> 
+</div> 
+); 
+} 
+export default App; 
+----------------------------------------------------------------------------------
+React2 (Cards):
+//app.js
+import React from 'react'; 
+function Card({ title, text, image }) { 
+return ( 
+<div className="card" style={{ width: '18rem' }}> 
+<img src= {`${process.env.PUBLIC_URL}/images/${image}`} 
+className="card-img-top" alt="card" /> 
+<div className="card-body"> 
+<h5 className="card-title">{title}</h5> 
+<p className="card-text">{text}</p> 
+</div> 
+</div> 
+); 
+} 
+export default Card; 
+// card component :
+function App() { 
+// Cadr Data 
+const cardsData = [ 
+{ 
+id: 1, 
+title: "Card 1", 
+text: "This is the first card.", 
+image: "team-1.jpg" 
+}, 
+{ 
+id: 2, 
+title: "Card 2", 
+text: "This is the second card.", 
+image: "team-2.jpg" 
+}, 
+{ 
+id: 3, 
+title: "Card 3", 
+text: "This is the third card.", 
+image: "team-3.jpg" 
+}, 
+{ 
+id: 4, 
+title: "Card 4", 
+text: "This is the fourth card.", 
+image: "team-4.jpg" 
+} 
+]; 
+return ( 
+<div className="App"> 
+<div className="d-flex justify-content-around"> 
+{cardsData.map((card) => ( 
+<Card  
+key={card.id} 
+title={card.title}  
+text={card.text}  
+image={card.image}  
+/> 
+))} 
+</div> 
+</div> 
+); 
+} 
+export default App; 
+---> npm run dev 
+----------------------------------------------------------------------------------
+React3 (Likes increment) :
+---> npm install bootstrap 
+// create Likebutton.jsx :
+import React, { useState } from "react"; 
+function LikeButton() { 
+const [likes, setLikes] = useState(0); 
+function handleLike() { 
+setLikes(likes + 1); 
+} 
+return ( 
+<div className="text-center mt-5"> 
+<h3>   
+Likes: {likes}</h3> 
+<button   className="btn btn-primary"onClick={handleLike}> 
+Like    
+</button> 
+</div> 
+); 
+} 
+export default LikeButton; 
+// app :
+import React from "react"; 
+import LikeButton from "./LikeButton"; 
+function App() { 
+return ( 
+<div> 
+<LikeButton /> 
+</div> 
+); 
+} 
+export default App; 
+---> npm run dev
+---------------------------------------------------------------------------------------
+React4 (Darkmode) :
+//create themeswitcher.jsx :
+import { useState } from "react"; 
+function ThemeSwitcher() { 
+// Step 2: Create state 
+const [isDarkMode, setIsDarkMode] = useState(false); 
+// Step 3: Toggle function 
+function toggleTheme() { 
+setIsDarkMode(!isDarkMode); 
+} 
+// Step 4: Dynamic styles 
+const style = { 
+backgroundColor: isDarkMode ? "black" : "white", 
+color: isDarkMode ? "white" : "black", 
+height: "100vh", 
+textAlign: "center", 
+paddingTop: "50px" 
+}; 
+return ( 
+<div style={style}> 
+<h2> 
+{isDarkMode ? "Dark Mode" : "Light Mode"} 
+</h2> 
+<button onClick={toggleTheme}> 
+{isDarkMode ? "Switch to Light" : "Switch to Dark"} 
+</button> 
+</div> 
+); 
+} 
+export default ThemeSwitcher; 
+//app.js :
+import ThemeSwitcher from "./ThemeSwitcher"; 
+function App() { 
+return <ThemeSwitcher />; 
+} 
+export default App; 
+---> npm run dev
+----------------------------------------------------------------------------------
+testing(Math operation) without jest :
+//create file Calc.js
+function add(a, b) { 
+return a + b; 
+} 
+function subtract(a, b) { 
+return a - b; 
+} 
+function multiply(a, b) { 
+return a * b; 
+} 
+function divide(a, b) { 
+if (b === 0) { 
+return "Error"; 
+} 
+return a / b; 
+} 
+module.exports = { add, subtract, multiply, divide }; 
+// create calc.test.js :
+const calc = require('./calculator'); 
+// Simple test function 
+function test(name, result, expected) { 
+if (result === expected) { 
+console.log("PASS:", name); 
+} else { 
+console.log("FAIL:", name); 
+} 
+} 
+console.log("Start Tests\n"); 
+// Basic tests 
+test("Add", calc.add(2, 3), 5); 
+test("Subtract", calc.subtract(10, 5), 5); 
+test("Multiply", calc.multiply(2, 3), 6); 
+test("Divide", calc.divide(10, 2), 5); 
+// Error test 
+test("Divide by Zero", calc.divide(10, 0), "Error"); 
+// Integration test (multiple functions together) 
+test("Workflow", calc.multiply(calc.add(2, 3), 2), 10); 
+console.log("\nEnd Tests"); 
+---> node calculator.test.js 
+-----------------------------------------------------------------------------
+testing4(calc) with jest :
+---> npm init -y
+---> npm install jest --save-dev 
+// package.json :
+"scripts": { 
+"test": "jest" 
+} 
+// create calc.js :
+function add(a, b) { 
+return a + b; 
+} 
+function subtract(a, b) { 
+return a - b; 
+} 
+function multiply(a, b) { 
+return a * b; 
+} 
+function divide(a, b) { 
+if (b === 0) { 
+throw new Error("Error"); 
+} 
+return a / b; 
+} 
+module.exports = { add, subtract, multiply, divide }; 
+//create calc.test.js :
+const calc = require('./calculator'); 
+test("Add + Multiply", () => { 
+const result = calc.multiply(calc.add(2, 3), 2); 
+expect(result).toBe(10); 
+}); 
+test("Subtract + Divide", () => { 
+const result = calc.divide(calc.subtract(10, 2), 2); 
+expect(result).toBe(4); 
+}); 
+test("Mixed Operations", () => { 
+const result = calc.add(calc.multiply(2, 3), 5); 
+expect(result).toBe(11); 
+}); 
+test("Divide by Zero", () => { 
+expect(() => calc.divide(10, 0)).toThrow(); 
+}); 
+---> npm test 
+--------------------------------------------------------------------------------------
+//node product management API
+--->npm init -y
+npm install express mysql2
+npm install nodemon --save-dev
+Update package.json
+"scripts": {
+"start": "node app.js",
+"dev": "nodemon app.js"
+}
+
+//Database Setup (MySQL)
+CREATE DATABASE we_db;
+USE we_db;
+CREATE TABLE products (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+price DECIMAL(10,2),
+quantity INT
+)
+// app.js :
+const express = require('express');
+const mysql = require('mysql2');
+const app = express();
+app.use(express.json());
+app.listen(3000, () => {
+console.log("Server running on port 3000");
+});
+//MySQL Connection:
+const db = mysql.createConnection({
+host: 'localhost',
+user: 'root',
+password: '',
+database: 'we_db'
+});
+
+app.post('/products', (req, res) => {
+const { name, price, quantity } = req.body;
+const sql = "INSERT INTO products (name, price, quantity) VALUES
+(?, ?, ?)";
+db.query(sql, [name, price, quantity], (err, result) => {
+if (err) return res.send(err);
+res.send("Product Added");
+});
+});
+app.get('/products', (req, res) => {
+db.query("SELECT * FROM products", (err, results) => {
+if (err) return res.send(err);
+res.json(results);
+});
+});
+app.get('/products/:id', (req, res) => {
+const id = req.params.id;
+db.query("SELECT * FROM products WHERE id = ?", [id], (err, result)
+=> {
+if (err) return res.send(err);
+res.json(result[0]);
+});
+});
+app.put('/products/:id', (req, res) => {
+const id = req.params.id;
+const { name, price, quantity } = req.body;
+const sql = "UPDATE products SET name=?, price=?, quantity=?
+WHERE id=?";
+db.query(sql, [name, price, quantity, id], (err) => {
+if (err) return res.send(err);
+res.send("Product Updated");
+});
+});
+app.delete('/products/:id', (req, res) => {
+const id = req.params.id;
+db.query("DELETE FROM products WHERE id=?", [id], (err) => {
+if (err) return res.send(err);
+res.send("Product Deleted");
+});
+});
+//Run Server
+-->npm run dev
+----------------------------------------------------------------------
+//node2 Innovate Web Solutions
+--->npm init -y
+--->npm install express
+
+app.listen(3000, () => {
+console.log("Server running on http://localhost:3000");
+});
+
+//index.js
+const express = require('express');
+const app = express();
+app.listen(3000, () => {
+console.log("Server running on port 3000");
+});
+// Home Page
+app.get('/', (req, res) => {
+res.send(`
+<h1>Welcome to Innovate Web Solutions</h1>
+<p>Your partner in web development</p>
+<a href="/about">About</a> |
+<a href="/products">Products</a> |
+<a href="/contact">Contact</a>
+`);
+});
+// About Page
+app.get('/about', (req, res) => {
+res.send(`
+<h1>About Us</h1>
+<p>We provide modern web solutions for businesses.</p>
+<a href="/">Home</a>
+`);
+});
+// Products Page
+app.get('/products', (req, res) => {
+res.send(`
+<h1>Our Products</h1>
+<ul>
+<li>Website Development</li>
+<li>Mobile Applications</li>
+<li>E-commerce Solutions</li>
+</ul>
+<a href="/">Home</a>
+`);
+});
+// Contact Page
+app.get('/contact', (req, res) => {
+res.send(`
+<h1>Contact Us</h1>
+<p>Email: info@innovate.com</p>
+<p>Phone: 01000000000</p>
+<a href="/">Home</a>
+`);
+});
+//Run Server
+-->node index.js
+----------------------------------------------------------------------
+
+//Factory Design Pattern//
+
+// Car class
+class Car {
+constructor(type, model) {
+this.type = type;
+this.model = model;
+}
+info() {
+return `${this.type} - ${this.model}`;
+}
+}
+// Factory class
+class CarFactory {
+createCar(type, model) {
+return new Car(type, model);
+}
+}
+// Using the factory
+const factory = new CarFactory();
+const car1 = factory.createCar("BMW", "Model 1");
+const car2 = factory.createCar("Tesla", "Model X");
+const car3 = factory.createCar("Audi", "A6");
+// Display cars
+console.log(car1.info()); // BMW - Model 1
+console.log(car2.info()); // Tesla - Model X
+console.log(car3.info()); // Audi - A6
+--------------------------------------------------------------------------------------------
+
+//Adapter Design Pattern//
+
+// Implementation
+class LegacyPrinter {
+printLegacy(text) {
+console.log(`Legacy Printing: ${text}`);
+}
+}
+// Target interface
+class Printer {
+print(text) { }
+}
+// Adapter
+class PrinterAdapter extends Printer {
+constructor() {
+super();
+this.legacyPrinter = new LegacyPrinter();
+}
+print(text) {
+this.legacyPrinter.printLegacy(text);
+}
+}
+// Usage
+const printer = new PrinterAdapter();
+printer.print("Hello, World!"); // Output: "Legacy Printing: Hello, World!"
+-----------------------------------------------------------------------------------
+//login Python Tkinter//
+
+import tkinter as tk
+from tkinter import messagebox
+# Login validation function
+def login():
+username = username_entry.get()
+password = password_entry.get()
+# Replace with your actual validation logic or database check
+if username == "user" and password == "password":
+messagebox.showinfo("Success", "Login Successful!")
+# You can open a new window or redirect here
+else:
+messagebox.showerror("Error", "Incorrect username or password.")
+password_entry.delete(0, tk.END) # Clear password field
+# Main application window
+root = tk.Tk()
+root.title("Login Form")
+root.geometry("300x120")
+root.resizable(False, False)
+# Username Label & Entry
+username_label = tk.Label(root, text="Username:")
+username_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+username_entry = tk.Entry(root)
+username_entry.grid(row=0, column=1, padx=5, pady=5)
+# Password Label & Entry
+password_label = tk.Label(root, text="Password:")
+password_label.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+password_entry = tk.Entry(root, show="*") # Hide password input
+password_entry.grid(row=1, column=1, padx=5, pady=5)
+# Login Button
+login_button = tk.Button(root, text="Login", command=login)
+login_button.grid(row=2, column=0, columnspan=2, padx=5, pady=10)
+# Run the application
+root.mainloop()
+------------------------------------------------------------------------------------
+//price calculator Python Tkinter//
+
+import tkinter as tk
+from tkinter import messagebox
+def calculate():
+try:
+price = float(price_entry.get())
+discount = float(discount_entry.get())
+# Validation
+if price < 0:
+raise ValueError("Price cannot be negative.")
+if not (0 <= discount <= 100):
+raise ValueError("Discount must be between 0 and 100.")
+net_price = price * (1 - discount / 100)
+result_label.config(text=f"Net Price: {net_price:.2f}")
+except ValueError as e:
+messagebox.showerror("Oops!", str(e)) # Kid-friendly error
+price_entry.delete(0, tk.END)
+discount_entry.delete(0, tk.END)
+except:
+messagebox.showerror("Oops!", "Please enter numbers only!") # Kid-friendly error
+price_entry.delete(0, tk.END)
+discount_entry.delete(0, tk.END)
+# Main window
+root = tk.Tk()
+root.title("Price Calculator")
+root.geometry("300x150")
+root.resizable(False, False)
+# Labels and entry fields
+tk.Label(root, text="Price:").grid(row=0, column=0, padx=5, pady=5,
+sticky="w")
+price_entry = tk.Entry(root)
+price_entry.grid(row=0, column=1, padx=5, pady=5)
+tk.Label(root, text="Discount (%):").grid(row=1, column=0, padx=5,
+pady=5, sticky="w")
+discount_entry = tk.Entry(root)
+discount_entry.grid(row=1, column=1, padx=5, pady=5)
+# Calculate button
+tk.Button(root, text="Calculate!", command=calculate).grid(row=2,
+column=0, columnspan=2, pady=10)
+# Result label
+result_label = tk.Label(root, text="Net Price: ")
+result_label.grid(row=3, column=0, columnspan=2, padx=5, pady=(0,5))
+# Run application
+root.mainloop()
+--------------------------------------------------------------------------------
